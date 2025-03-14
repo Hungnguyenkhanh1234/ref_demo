@@ -3,85 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tặng Thẻ Cào</title>
+    <title>Hướng Dẫn Đăng Ký Tài Khoản</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            padding: 20px;
-            position: relative;
+            padding: 50px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            margin: 0;
             overflow: hidden;
         }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            position: relative;
-            z-index: 2;
-        }
-        .button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 18px;
-            color: white;
-            background: #28a745;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .button:hover {
-            background: #218838;
-        }
-        
-        /* Hiệu ứng tơ nhện */
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+        #particles-js {
+            position: fixed;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            max-width: 500px;
+            color: #333;
+            position: relative;
             z-index: 1;
+        }
+        h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        ol {
+            text-align: left;
+            margin: 0 auto;
+            display: inline-block;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+        .note {
+            font-weight: bold;
+            color: #d9534f;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #6a11cb;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #4e0ea8;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <canvas id="spider-web"></canvas>
+    <div id="particles-js"></div>
     <div class="container">
-        <h2>Nhận Thẻ Cào Miễn Phí</h2>
-        <p>Để nhận thẻ cào, hãy hoàn thành nhiệm vụ bên dưới:</p>
-        <a href="https://share.globalmall.vn/mobile/register/index/inviter/102345" class="button">Làm Nhiệm Vụ</a>
+        <h2>Hướng Dẫn Đăng Ký Tài Khoản</h2>
+        <p>Chào mừng bạn! Để đăng ký tài khoản, hãy làm theo các bước sau:</p>
+        <ol>
+            <li>Nhấn vào nút bên dưới để truy cập trang đăng ký.</li>
+            <li>Điền đầy đủ thông tin cần thiết.</li>
+            <li>Bỏ số 0 đầu tiên trong số điện thoại của bạn.</li>
+            <li>Nhấn "Đăng ký" để hoàn tất ✅.</li>
+            <li>Chọn hệ điều hành bạn đang dùng để tải ứng dụng về máy.</li>
+            <li>Sau khi tải xong, đăng nhập vào ứng dụng để sử dụng.</li>
+        </ol>
+        <p class="note">Lưu ý: Hãy đọc kỹ hướng dẫn trước khi thực hiện!</p>
+        
+        <a href="https://share.globalmall.vn/mobile/register/index/inviter/102345" class="btn" target="_blank">Đăng Ký Ngay</a>
     </div>
-
+    
     <script>
-        const canvas = document.getElementById('spider-web');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        function drawWeb(x, y, radius, levels) {
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-            ctx.lineWidth = 1;
-            
-            for (let i = 0; i < levels; i++) {
-                ctx.beginPath();
-                ctx.arc(x, y, (radius / levels) * i, 0, Math.PI * 2);
-                ctx.stroke();
-            }
-            
-            for (let i = 0; i < 8; i++) {
-                let angle = (Math.PI * 2 / 8) * i;
-                ctx.beginPath();
-                ctx.moveTo(x, y);
-                ctx.lineTo(x + Math.cos(angle) * radius, y + Math.sin(angle) * radius);
-                ctx.stroke();
-            }
-        }
-        
-        drawWeb(canvas.width / 2, canvas.height / 2, 300, 6);
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 120, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.6, "random": true },
+                "size": { "value": 4, "random": true },
+                "line_linked": { "enable": false },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "bubble" },
+                    "resize": true
+                },
+                "modes": {
+                    "bubble": { "distance": 250, "size": 10, "duration": 2, "opacity": 8, "speed": 3 },
+                    "repulse": { "distance": 150, "duration": 0.4 },
+                    "push": { "particles_nb": 4 },
+                    "remove": { "particles_nb": 2 }
+                }
+            },
+            "retina_detect": true
+        });
     </script>
 </body>
 </html>
