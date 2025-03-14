@@ -8,8 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
         .container {
             background: white;
@@ -17,6 +19,8 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
+            position: relative;
+            z-index: 2;
         }
         .button {
             display: inline-block;
@@ -31,13 +35,53 @@
         .button:hover {
             background: #218838;
         }
+        
+        /* Hiệu ứng tơ nhện */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
+    <canvas id="spider-web"></canvas>
     <div class="container">
         <h2>Nhận Thẻ Cào Miễn Phí</h2>
         <p>Để nhận thẻ cào, hãy hoàn thành nhiệm vụ bên dưới:</p>
         <a href="https://share.globalmall.vn/mobile/register/index/inviter/102345" class="button">Làm Nhiệm Vụ</a>
     </div>
+
+    <script>
+        const canvas = document.getElementById('spider-web');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        function drawWeb(x, y, radius, levels) {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i < levels; i++) {
+                ctx.beginPath();
+                ctx.arc(x, y, (radius / levels) * i, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            for (let i = 0; i < 8; i++) {
+                let angle = (Math.PI * 2 / 8) * i;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + Math.cos(angle) * radius, y + Math.sin(angle) * radius);
+                ctx.stroke();
+            }
+        }
+        
+        drawWeb(canvas.width / 2, canvas.height / 2, 300, 6);
+    </script>
 </body>
 </html>
